@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/Administrador/Desktop/offlinehost.html -->
+<html lang="en" style="border-color: white;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest-Land Generator</title>
+    <link rel="stylesheet" href="file:///C:/Users/Administrador/Downloads/Manifest-Land%20Generator_files/styles.css">
+    <script defer="" src="file:///C:/Users/Administrador/Downloads/Manifest-Land%20Generator_files/script.js.descarga"></script>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup h1 {
+            margin-bottom: 10px;
+            color: #ff5f1f;
+        }
+
+        .popup p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .popup-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .popup-buttons .tiktok {
+            background: #ff5f1f;
+        }
+
+        .popup-buttons .discord {
+            background: #7289da;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #333;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #555;
+        }
+
+        .header {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ff5f1f;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            background-color: #1e1e1e;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #ff5f1f;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #e94e00;
+            background-color: #000000;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #ff5f1f;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e94e00;
+        }
+
+        .btn:disabled {
+            background-color: #555;
+            color: #bbb;
+            cursor: not-allowed;
+            opacity: 0.7;
+            border: 2px solid #444;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .log-box {
+            margin-top: 20px;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .log-entry {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.4s forwards;
+        }
+
+        .log-entry.success {
+            background-color: #28a745;
+        }
+
+        .log-entry.error {
+            background-color: #dc3545;
+        }
+
+        .log-entry.info {
+            background-color: #ff5f1f;
+            color: #fff;
+        }
+
+        .image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .creator-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #ff5f1f;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-text {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: black;
+            color: grey;
+        }
+
+        .main-content {
+            max-height: 90vh;
+            overflow-y: auto;
+            padding-bottom: 50px; /* Ensures footer is visible */
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff5f1f;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e94e00;
+        }
+    </style>
+</head>
+<body>
+    <div id="popup" class="popup-overlay" style="display: none;">
+        <div class="popup">
+            <h1>Join Community</h1>
+            <p>The TikTok and Discord of the creator are below. Join now!</p>
+            <div class="popup-buttons">
+                <a href="https://www.tiktok.com/@xanderttv" target="_blank" class="tiktok">TikTok</a>
+                <a href="https://discord.gg/bJnHuEWBG2" target="_blank" class="discord">Discord</a>
+            </div>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="header">
+            <div class="container" style="background-color: black;">
+                <h1 class="title" style="color: red; background: black;">manifestland Currently Offline.</h1>
+                <p style="color: grey;">User <b>Manifest land is on maintenace please have patience and see discord server for updates!
+    https://discord.gg/nRQavEBSTv.</b></p>
+                <div class="image-wrapper">
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            
+            
+            <div id="logBox" class="log-box"></div>
+        </div>
+
+        
+        
+
+        <div class="footer-text">
+            <p>© 2025 manifestland discord. All rights reserved.</p>
+        </div>
+    </main>
+
+    <script>
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+        function createLogEntry(message, type) {
+            const logBox = document.getElementById('logBox');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}`;
+            logEntry.textContent = message;
+            logEntry.style.opacity = 0; 
+            logEntry.style.transform = 'translateY(20px)'; 
+
+            logBox.appendChild(logEntry);
+
+            setTimeout(() => {
+                logEntry.style.opacity = 1;
+                logEntry.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        function generateManifest() {
+            const inputBox = document.getElementById('fileInput');
+            const button = document.getElementById('submitBtn');
+            let gameId = inputBox.value.trim();
+
+            const logBox = document.getElementById('logBox');
+            logBox.innerHTML = ""; 
+            createLogEntry("Generating...", "info");
+            button.disabled = true;
+
+            if (!gameId) {
+                createLogEntry("Please enter a game ID or URL.", "error");
+                button.disabled = false;
+                return;
+            }
+
+            const urlPattern = /https:\/\/store\.steampowered\.com\/agecheck\/app\/(\d+)\//;
+            const match = gameId.match(urlPattern);
+            if (match) {
+                gameId = match[1];
+            }
+
+            if (!/^\d+$/.test(gameId)) {
+                createLogEntry("Invalid ID. Please enter a valid numerical game ID.", "error");
+                button.disabled = false;
+                return;
+            }
+
+            setTimeout(() => {
+                const url = `https://lightcloud.click/api/gameid/${gameId}.zip`;
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) {
+                            createLogEntry("Success! Manifest generated.", "success");
+                            return response.blob();
+                        } else {
+                            createLogEntry("This game is not available in the database.", "error");
+                            throw new Error("Game not found");
+                        }
+                    })
+                    .then(blob => {
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = `manifest_${gameId}.zip`;
+                        link.click();
+                    })
+                    .catch(error => {
+                        createLogEntry(`Error: ${error.message}`, "error");
+                        console.error("Error:", error);
+                    })
+                    .finally(() => {
+                        button.disabled = false;
+                    });
+            }, 1000
+);
+	}
+
+	document.getElementById('submitBtn').addEventListener('click', generateManifest);
+    </script>
+
+</body></html>
